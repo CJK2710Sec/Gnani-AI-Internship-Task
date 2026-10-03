@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const GITHUB_REPO_URL = "YOUR_GITHUB_REPOSITORY_URL";
+const GITHUB_REPO_URL = "https://github.com/CJK2710Sec/Gnani-AI-Internship-Task.git";
 
 export default function ArchitecturePage() {
   return (
@@ -160,8 +160,8 @@ export default function ArchitecturePage() {
                 />
 
                 <ArchitectureReason
-                title="Recoverable pipeline"
-                text="Each major result is persisted before the next stage, allowing work to resume without repeating completed steps."
+                  title="Background processing"
+                  text="Long-running transcription and summarization are handled by a worker process rather than inside the FastAPI request. In the current Render deployment, that worker process shares the same service container as the API."
                 />
 
             </div>
@@ -549,7 +549,7 @@ export default function ArchitecturePage() {
 
 
             <a
-              href="YOUR_GITHUB_REPOSITORY_URL"
+              href="https://github.com/CJK2710Sec/Gnani-AI-Internship-Task.git"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center justify-center rounded-xl bg-indigo-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-indigo-700"
