@@ -1,0 +1,32 @@
+# Secrets / environment files
+.env
+.env.*
+!.env.example
+
+backend/.env
+backend/.env.*
+
+frontend/.env.local
+frontend/.env.*.local
+
+# Python
+backend/.venv/
+backend/__pycache__/
+backend/**/__pycache__/
+*.pyc
+*.pyo
+
+# Next.js
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
