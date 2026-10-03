@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import ThemeToggle from "@/components/ThemeToggle";
 
 import {
   getNotes,
@@ -26,19 +27,19 @@ const LANGUAGES = [
 function statusStyles(status: NoteListItem["status"]) {
   switch (status) {
     case "COMPLETED":
-      return "bg-emerald-50 text-emerald-700 border-emerald-200";
+      return "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-800";
 
     case "FAILED":
-      return "bg-red-50 text-red-700 border-red-200";
+      return "bg-red-50 text-red-700 border-red-200 dark:bg-red-950/40 dark:text-red-300 dark:border-red-800";
 
     case "TRANSCRIBING":
-      return "bg-blue-50 text-blue-700 border-blue-200";
+      return "bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/40 dark:text-blue-300 dark:border-blue-800";
 
     case "SUMMARIZING":
-      return "bg-violet-50 text-violet-700 border-violet-200";
+      return "bg-violet-50 text-violet-700 border-violet-200 dark:bg-violet-950/40 dark:text-violet-300 dark:border-violet-800";
 
     default:
-      return "bg-amber-50 text-amber-700 border-amber-200";
+      return "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/40 dark:text-amber-300 dark:border-amber-800";
   }
 }
 
@@ -147,9 +148,9 @@ export default function Home() {
 
 
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-900">
+    <main className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
 
-      <div className="border-b border-slate-200 bg-white">
+      <div className="border-b border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
 
           <div>
@@ -157,17 +158,21 @@ export default function Home() {
               Audio Notes
             </p>
 
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-slate-500 dark:text-slate-400">
               Gnani ASR + AI Summaries
             </p>
           </div>
 
-          <Link
-            href="/architecture"
-            className="rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
-          >
-            Architecture
-          </Link>
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
+
+            <Link
+              href="/architecture"
+              className="rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
+            >
+              Architecture
+            </Link>
+          </div>
 
         </div>
       </div>
@@ -180,7 +185,7 @@ export default function Home() {
           <div>
             <div className="mb-8">
 
-              <div className="mb-4 inline-flex rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-indigo-700">
+              <div className="mb-4 inline-flex rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-indigo-700 dark:border-indigo-800 dark:bg-indigo-950/40 dark:text-indigo-300">
                 Audio intelligence workspace
               </div>
 
@@ -189,32 +194,32 @@ export default function Home() {
                 transcripts and concise notes
               </h1>
 
-              <p className="mt-5 max-w-xl text-lg leading-8 text-slate-600">
+              <p className="mt-5 max-w-xl text-lg leading-8 text-slate-600 dark:text-slate-400">
                 Upload an audio recording, choose the spoken
                 language, and let the platform handle
                 transcription and summarization in the
                 background.
               </p>
 
-              <div className="mt-8 flex flex-wrap items-center gap-3 text-sm font-medium text-slate-600">
+              <div className="mt-8 flex flex-wrap items-center gap-3 text-sm font-medium text-slate-600 dark:text-slate-400">
 
-                <span className="rounded-xl border border-slate-200 bg-white px-4 py-2 shadow-sm">
+                <span className="rounded-xl border border-slate-200 bg-white px-4 py-2 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                   01 Upload
                 </span>
 
-                <span className="text-slate-300">
+                <span className="text-slate-300 dark:text-slate-700">
                   →
                 </span>
 
-                <span className="rounded-xl border border-slate-200 bg-white px-4 py-2 shadow-sm">
+                <span className="rounded-xl border border-slate-200 bg-white px-4 py-2 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                   02 Transcribe
                 </span>
 
-                <span className="text-slate-300">
+                <span className="text-slate-300 dark:text-slate-700">
                   →
                 </span>
 
-                <span className="rounded-xl border border-slate-200 bg-white px-4 py-2 shadow-sm">
+                <span className="rounded-xl border border-slate-200 bg-white px-4 py-2 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                   03 Summarize
                 </span>
 
@@ -225,14 +230,14 @@ export default function Home() {
           </div>
 
 
-          <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+          <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
 
             <div className="mb-6">
               <h2 className="text-2xl font-semibold">
                 Upload audio
               </h2>
 
-              <p className="mt-2 text-sm leading-6 text-slate-500">
+              <p className="mt-2 text-sm leading-6 text-slate-500 dark:text-slate-400">
                 Select a supported audio file and the language
                 spoken in the recording.
               </p>
@@ -245,21 +250,21 @@ export default function Home() {
             >
 
               <div>
-                <label className="mb-2 block text-sm font-medium text-slate-700">
+                <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
                   Audio file
                 </label>
 
-                <label className="flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 px-5 py-6 text-center transition hover:border-indigo-400 hover:bg-indigo-50/40">
+                <label className="flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 px-5 py-6 text-center transition hover:border-indigo-400 hover:bg-indigo-50/40 dark:hover:border-indigo-500 dark:hover:bg-indigo-950/30">
 
-                  <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-sm">
+                  <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-white dark:bg-slate-900 shadow-sm">
                     ↑
                   </div>
 
-                  <p className="font-medium text-slate-800">
+                  <p className="font-medium text-slate-800 dark:text-slate-100">
                     Choose audio file
                   </p>
 
-                  <p className="mt-1 text-xs text-slate-500">
+                  <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
                     MP3, WAV, M4A, FLAC, OGG, WEBM and more
                   </p>
 
@@ -277,12 +282,12 @@ export default function Home() {
                 </label>
 
                 {file && (
-                  <div className="mt-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3">
-                    <p className="truncate text-sm font-medium text-slate-700">
+                  <div className="mt-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 dark:border-slate-800 dark:bg-slate-950">
+                    <p className="truncate text-sm font-medium text-slate-700 dark:text-slate-300">
                       {file.name}
                     </p>
 
-                    <p className="mt-1 text-xs text-slate-500">
+                    <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
                       {(file.size / 1024 / 1024).toFixed(2)} MB
                     </p>
                   </div>
@@ -294,7 +299,7 @@ export default function Home() {
               <div>
                 <label
                   htmlFor="language"
-                  className="mb-2 block text-sm font-medium text-slate-700"
+                  className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300"
                 >
                   Audio language
                 </label>
@@ -305,7 +310,7 @@ export default function Home() {
                   onChange={(event) =>
                     setLanguageCode(event.target.value)
                   }
-                  className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                  className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:focus:border-indigo-400 dark:focus:ring-indigo-950"
                 >
                   {LANGUAGES.map((language) => (
                     <option
@@ -321,7 +326,7 @@ export default function Home() {
 
 
               {error && (
-                <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-800 dark:bg-red-950/40 dark:text-red-300">
                   {error}
                 </div>
               )}
@@ -371,7 +376,7 @@ export default function Home() {
                 Recent uploads
               </h2>
 
-              <p className="mt-1 text-sm text-slate-500">
+              <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
                 Open any note to view processing progress,
                 transcript, and summary.
               </p>
@@ -379,7 +384,7 @@ export default function Home() {
 
             <button
               onClick={loadNotes}
-              className="self-start rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50 sm:self-auto"
+              className="self-start rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 sm:self-auto"
             >
               Refresh
             </button>
@@ -389,19 +394,19 @@ export default function Home() {
 
           {loadingNotes ? (
 
-            <div className="rounded-2xl border border-slate-200 bg-white p-8 text-center text-slate-500">
+            <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 text-center text-slate-500 dark:text-slate-400">
               Loading uploads...
             </div>
 
           ) : notes.length === 0 ? (
 
-            <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-12 text-center">
+            <div className="rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 p-12 text-center">
 
-              <p className="font-medium text-slate-700">
+              <p className="font-medium text-slate-700 dark:text-slate-300">
                 No uploads yet
               </p>
 
-              <p className="mt-2 text-sm text-slate-500">
+              <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
                 Your processed audio notes will appear here.
               </p>
 
@@ -416,18 +421,18 @@ export default function Home() {
                 <Link
                   href={`/notes/${note.id}`}
                   key={note.id}
-                  className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-200 hover:shadow-md"
+                  className="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-200 hover:shadow-md dark:hover:border-indigo-800"
                 >
 
                   <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
 
                     <div className="min-w-0">
 
-                      <p className="truncate font-semibold text-slate-800">
+                      <p className="truncate font-semibold text-slate-800 dark:text-slate-100">
                         {note.original_filename}
                       </p>
 
-                      <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-slate-500">
+                      <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
 
                         <span>
                           {note.language_code}
@@ -456,7 +461,7 @@ export default function Home() {
                         {statusLabel(note.status)}
                       </span>
                       {note.status !== "COMPLETED" && (
-                        <span className="text-sm font-semibold text-slate-600">
+                        <span className="text-sm font-semibold text-slate-600 dark:text-slate-400">
                         {note.progress}%
                       </span>
 )}
@@ -466,7 +471,7 @@ export default function Home() {
                   </div>
                   {note.error_message && (
 
-                    <p className="mt-3 text-sm text-red-600">
+                    <p className="mt-3 text-sm text-red-600 dark:text-red-400">
                       {note.error_message}
                     </p>
 
@@ -497,19 +502,19 @@ function FeatureCard({
   text: string;
 }) {
   return (
-    <div className="flex min-h-[130px] items-start gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+    <div className="flex min-h-[130px] items-start gap-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-sm">
 
-      <div className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600">
+      <div className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600 dark:bg-indigo-950/40 dark:text-indigo-300">
         ✦
       </div>
 
       <div>
 
-        <p className="font-semibold text-slate-800">
+        <p className="font-semibold text-slate-800 dark:text-slate-100">
           {title}
         </p>
 
-        <p className="mt-2 text-sm leading-6 text-slate-500">
+        <p className="mt-2 text-sm leading-6 text-slate-500 dark:text-slate-400">
           {text}
         </p>
 

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import ThemeToggle from "@/components/ThemeToggle";
 
 import {
   AudioNote,
@@ -19,19 +20,19 @@ const TERMINAL_STATUSES = [
 function statusStyles(status: AudioNote["status"]) {
   switch (status) {
     case "COMPLETED":
-      return "border-emerald-200 bg-emerald-50 text-emerald-700";
+      return "border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300";
 
     case "FAILED":
-      return "border-red-200 bg-red-50 text-red-700";
+      return "border-red-200 bg-red-50 text-red-700 dark:border-red-800 dark:bg-red-950/40 dark:text-red-300";
 
     case "TRANSCRIBING":
-      return "border-blue-200 bg-blue-50 text-blue-700";
+      return "border-blue-200 bg-blue-50 text-blue-700 dark:border-blue-800 dark:bg-blue-950/40 dark:text-blue-300";
 
     case "SUMMARIZING":
-      return "border-violet-200 bg-violet-50 text-violet-700";
+      return "border-violet-200 bg-violet-50 text-violet-700 dark:border-violet-800 dark:bg-violet-950/40 dark:text-violet-300";
 
     default:
-      return "border-amber-200 bg-amber-50 text-amber-700";
+      return "border-amber-200 bg-amber-50 text-amber-700 dark:border-amber-800 dark:bg-amber-950/40 dark:text-amber-300";
   }
 }
 
@@ -128,7 +129,7 @@ export default function NotePage() {
 
   if (error) {
     return (
-      <main className="min-h-screen bg-slate-50 text-slate-900">
+      <main className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
 
         <TopBar />
 
@@ -136,18 +137,18 @@ export default function NotePage() {
 
           <Link
             href="/"
-            className="text-sm font-medium text-indigo-600 hover:underline"
+            className="text-sm font-medium text-indigo-600 hover:underline dark:text-indigo-400"
           >
             ← Back to uploads
           </Link>
 
-          <div className="mt-8 rounded-2xl border border-red-200 bg-red-50 p-6">
+          <div className="mt-8 rounded-2xl border border-red-200 bg-red-50 p-6 dark:border-red-800 dark:bg-red-950/40">
 
-            <p className="font-semibold text-red-800">
+            <p className="font-semibold text-red-800 dark:text-red-300">
               Unable to load this audio note
             </p>
 
-            <p className="mt-2 text-sm leading-6 text-red-700">
+            <p className="mt-2 text-sm leading-6 text-red-700 dark:text-red-300">
               {error}
             </p>
 
@@ -162,7 +163,7 @@ export default function NotePage() {
 
   if (!note) {
     return (
-      <main className="min-h-screen bg-slate-50 text-slate-900">
+      <main className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
 
         <TopBar />
 
@@ -170,9 +171,9 @@ export default function NotePage() {
 
           <div className="text-center">
 
-            <div className="mx-auto h-10 w-10 animate-pulse rounded-full bg-indigo-100" />
+            <div className="mx-auto h-10 w-10 animate-pulse rounded-full bg-indigo-100 dark:bg-indigo-950/60" />
 
-            <p className="mt-4 text-sm text-slate-500">
+            <p className="mt-4 text-sm text-slate-500 dark:text-slate-400">
               Loading audio note...
             </p>
 
@@ -186,7 +187,7 @@ export default function NotePage() {
 
 
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-900">
+    <main className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
 
       <TopBar />
 
@@ -196,7 +197,7 @@ export default function NotePage() {
 
           <Link
             href="/"
-            className="text-sm font-medium text-indigo-600 transition hover:text-indigo-700"
+            className="text-sm font-medium text-indigo-600 transition hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-300"
           >
             ← Back to uploads
           </Link>
@@ -204,9 +205,9 @@ export default function NotePage() {
         </div>
 
 
-        <section className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <section className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
 
-          <div className="border-b border-slate-100 p-7 sm:p-8">
+          <div className="border-b border-slate-100 p-7 dark:border-slate-800 sm:p-8">
 
             <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
 
@@ -222,19 +223,19 @@ export default function NotePage() {
                     {statusLabel(note.status)}
                   </span>
 
-                  <span className="text-xs text-slate-400">
+                  <span className="text-xs text-slate-400 dark:text-slate-500">
                     {note.language_code}
                   </span>
 
                 </div>
 
 
-                <h1 className="max-w-3xl break-words text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+                <h1 className="max-w-3xl break-words text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-3xl">
                   {note.original_filename}
                 </h1>
 
 
-                <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-500">
+                <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-500 dark:text-slate-400">
 
                   <span>
                     Uploaded{" "}
@@ -260,13 +261,13 @@ export default function NotePage() {
               </div>
 
 
-              <div className="rounded-2xl bg-slate-50 px-5 py-4">
+              <div className="rounded-2xl bg-slate-50 px-5 py-4 dark:bg-slate-950">
 
-                <p className="text-xs font-medium uppercase tracking-wide text-slate-400">
+                <p className="text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">
                   Processing
                 </p>
 
-                <p className="mt-1 text-2xl font-bold text-slate-800">
+                <p className="mt-1 text-2xl font-bold text-slate-800 dark:text-slate-100">
                   {note.progress}%
                 </p>
 
@@ -281,18 +282,18 @@ export default function NotePage() {
 
             <div className="mb-3 flex items-center justify-between">
 
-              <p className="text-sm font-medium text-slate-700">
+              <p className="text-sm font-medium text-slate-700 dark:text-slate-300">
                 Processing progress
               </p>
 
-              <p className="text-sm font-semibold text-slate-600">
+              <p className="text-sm font-semibold text-slate-600 dark:text-slate-400">
                 {note.progress}%
               </p>
 
             </div>
 
 
-            <div className="h-3 overflow-hidden rounded-full bg-slate-100">
+            <div className="h-3 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
 
               <div
                 className="h-full rounded-full bg-indigo-600 transition-all duration-700"
@@ -358,13 +359,13 @@ export default function NotePage() {
 
 
             {note.status === "COMPLETED" && (
-              <div className="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50 px-5 py-4">
+              <div className="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50 px-5 py-4 dark:border-emerald-800 dark:bg-emerald-950/40">
 
-                <p className="font-semibold text-emerald-800">
+                <p className="font-semibold text-emerald-800 dark:text-emerald-300">
                   Processing complete
                 </p>
 
-                <p className="mt-1 text-sm leading-6 text-emerald-700">
+                <p className="mt-1 text-sm leading-6 text-emerald-700 dark:text-emerald-300">
                   Your transcript and AI summary are ready below.
                 </p>
 
@@ -373,19 +374,19 @@ export default function NotePage() {
 
 
             {note.status === "FAILED" && (
-              <div className="mt-6 rounded-2xl border border-red-200 bg-red-50 px-5 py-4">
+              <div className="mt-6 rounded-2xl border border-red-200 bg-red-50 px-5 py-4 dark:border-red-800 dark:bg-red-950/40">
 
-                <p className="font-semibold text-red-800">
+                <p className="font-semibold text-red-800 dark:text-red-300">
                   Processing failed
                 </p>
 
-                <p className="mt-1 text-sm leading-6 text-red-700">
+                <p className="mt-1 text-sm leading-6 text-red-700 dark:text-red-300">
                   {note.error_message ??
                     "An unexpected processing error occurred."}
                 </p>
 
                 {note.transcript && (
-                  <p className="mt-3 text-sm font-medium text-red-700">
+                  <p className="mt-3 text-sm font-medium text-red-700 dark:text-red-300">
                     The transcript was preserved and is still available below.
                   </p>
                 )}
@@ -404,21 +405,21 @@ export default function NotePage() {
 
             {note.summary && (
 
-              <section className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm">
+              <section className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm dark:border-slate-800 dark:bg-slate-900">
 
                 <div className="flex items-center gap-3">
 
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-50 text-lg">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-50 text-lg dark:bg-indigo-950/40">
                     ✦
                   </div>
 
                   <div>
 
-                    <p className="text-xs font-semibold uppercase tracking-wide text-indigo-600">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-indigo-600 dark:text-indigo-400">
                       AI generated
                     </p>
 
-                    <h2 className="text-xl font-bold text-slate-900">
+                    <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100">
                       Summary
                     </h2>
 
@@ -427,9 +428,9 @@ export default function NotePage() {
                 </div>
 
 
-                <div className="mt-6 border-t border-slate-100 pt-6">
+                <div className="mt-6 border-t border-slate-100 pt-6 dark:border-slate-800">
 
-                  <p className="whitespace-pre-wrap leading-7 text-slate-700">
+                  <p className="whitespace-pre-wrap leading-7 text-slate-700 dark:text-slate-300">
                     {note.summary}
                   </p>
 
@@ -442,21 +443,21 @@ export default function NotePage() {
 
             {note.transcript && (
 
-              <section className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm">
+              <section className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm dark:border-slate-800 dark:bg-slate-900">
 
                 <div className="flex items-center gap-3">
 
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-lg">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-lg dark:bg-slate-800">
                     ≡
                   </div>
 
                   <div>
 
-                    <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500">
                       Gnani ASR
                     </p>
 
-                    <h2 className="text-xl font-bold text-slate-900">
+                    <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100">
                       Transcript
                     </h2>
 
@@ -465,9 +466,9 @@ export default function NotePage() {
                 </div>
 
 
-                <div className="mt-6 max-h-[650px] overflow-y-auto border-t border-slate-100 pt-6">
+                <div className="mt-6 max-h-[650px] overflow-y-auto border-t border-slate-100 pt-6 dark:border-slate-800">
 
-                  <p className="whitespace-pre-wrap leading-8 text-slate-700">
+                  <p className="whitespace-pre-wrap leading-8 text-slate-700 dark:text-slate-300">
                     {note.transcript}
                   </p>
 
@@ -486,17 +487,17 @@ export default function NotePage() {
           !note.summary &&
           note.status !== "FAILED" && (
 
-            <section className="mt-8 rounded-3xl border border-dashed border-slate-300 bg-white p-10 text-center">
+            <section className="mt-8 rounded-3xl border border-dashed border-slate-300 bg-white p-10 text-center dark:border-slate-700 dark:bg-slate-900">
 
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-indigo-50 text-indigo-600">
+              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-indigo-50 text-indigo-600 dark:bg-indigo-950/40 dark:text-indigo-300">
                 ✦
               </div>
 
-              <p className="mt-4 font-semibold text-slate-800">
+              <p className="mt-4 font-semibold text-slate-800 dark:text-slate-100">
                 Results will appear here
               </p>
 
-              <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-slate-500">
+              <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-slate-500 dark:text-slate-400">
                 The page automatically checks for processing
                 updates. Your transcript and summary will
                 appear as soon as they are ready.
@@ -515,7 +516,7 @@ export default function NotePage() {
 
 function TopBar() {
   return (
-    <div className="border-b border-slate-200 bg-white">
+    <div className="border-b border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
 
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
 
@@ -528,19 +529,23 @@ function TopBar() {
             Audio Notes
           </p>
 
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-slate-500 dark:text-slate-400">
             Gnani ASR + AI Summaries
           </p>
 
         </Link>
 
 
-        <Link
-          href="/architecture"
-          className="rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
-        >
-          Architecture
-        </Link>
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
+
+          <Link
+            href="/architecture"
+            className="rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
+          >
+            Architecture
+          </Link>
+        </div>
 
       </div>
 
@@ -562,8 +567,8 @@ function PipelineStep({
     <div
       className={`rounded-xl border px-4 py-3 transition ${
         active
-          ? "border-indigo-200 bg-indigo-50"
-          : "border-slate-200 bg-slate-50"
+          ? "border-indigo-200 bg-indigo-50 dark:border-indigo-800 dark:bg-indigo-950/40"
+          : "border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-950"
       }`}
     >
 
@@ -573,7 +578,7 @@ function PipelineStep({
           className={`flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold ${
             active
               ? "bg-indigo-600 text-white"
-              : "bg-slate-200 text-slate-500"
+              : "bg-slate-200 text-slate-500 dark:bg-slate-700 dark:text-slate-300"
           }`}
         >
           {active ? "✓" : number}
@@ -582,8 +587,8 @@ function PipelineStep({
         <span
           className={`text-sm font-medium ${
             active
-              ? "text-indigo-700"
-              : "text-slate-500"
+              ? "text-indigo-700 dark:text-indigo-300"
+              : "text-slate-500 dark:text-slate-400"
           }`}
         >
           {title}
@@ -604,7 +609,7 @@ function ProcessingMessage({
   text: string;
 }) {
   return (
-    <div className="mt-6 rounded-2xl border border-indigo-100 bg-indigo-50/60 px-5 py-4">
+    <div className="mt-6 rounded-2xl border border-indigo-100 bg-indigo-50/60 px-5 py-4 dark:border-indigo-900 dark:bg-indigo-950/30">
 
       <div className="flex gap-4">
 
@@ -612,11 +617,11 @@ function ProcessingMessage({
 
         <div>
 
-          <p className="font-semibold text-slate-800">
+          <p className="font-semibold text-slate-800 dark:text-slate-100">
             {title}
           </p>
 
-          <p className="mt-1 text-sm leading-6 text-slate-600">
+          <p className="mt-1 text-sm leading-6 text-slate-600 dark:text-slate-400">
             {text}
           </p>
 

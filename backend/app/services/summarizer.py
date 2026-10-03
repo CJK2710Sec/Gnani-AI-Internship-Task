@@ -33,7 +33,10 @@ def summarize_transcript(
                     "Create a clear, concise summary that "
                     "captures the main ideas and important "
                     "details. Do not invent information that "
-                    "is not present in the transcript."
+                    "is not present in the transcript. "
+                    "Return only the summary text. "
+                    "Do not include headings, labels, bullet points, "
+                    "or Markdown formatting."
                 ),
             },
             {
